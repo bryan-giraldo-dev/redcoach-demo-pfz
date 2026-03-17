@@ -9,9 +9,9 @@ const LANDING_DATA = {
     description:
       "Stop paying engineers to copy-paste between systems. Selfware creates intelligent overlays that make your disconnected software stack work as one unified platform.",
     primaryCTA: "Book a demo",
-    secondaryCTA: "See case studies",
+    secondaryCTA: "See case study",
     image: {
-      src: "assets/hero-overlay.png",
+      src: "assets/hero-overlay-v2.png",
       alt: "Selfware Performanze overlay unifying fragmented systems"
     }
   },

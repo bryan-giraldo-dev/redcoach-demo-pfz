@@ -44,6 +44,10 @@ h1, h2, h3 {
   background-color: rgba(255, 0, 0, 0.18);
 }
 
+.text-card-icon {
+  color: #BAC7C6;
+}
+
 .text-brand-blue {
   color: var(--core-blue);
 }
@@ -75,6 +79,58 @@ h1, h2, h3 {
   color: var(--archive-black);
 }
 
+/* Subtle scroll reveal animations */
+.fade-up-initial {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.55s ease-out, transform 0.55s ease-out;
+}
+
+.fade-up-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Card hover motion */
+.card-hover {
+  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+  will-change: transform;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-up-initial,
+  .fade-up-visible {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .card-hover {
+    transition: none !important;
+  }
+}
+
+/* Nav CTA subtle appear */
+.nav-cta {
+  transition: opacity 0.25s ease-out, transform 0.25s ease-out;
+}
+
+.nav-cta--hidden {
+  opacity: 0;
+  transform: translateY(-4px);
+  pointer-events: none;
+}
+
+.nav-cta--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Fine-tune Tailwind-generated layout to keep editorial whitespace */
 main {
   scroll-behavior: smooth;
@@ -97,4 +153,20 @@ section.bg-system > div.mx-auto {
 /* Fine-tune bottom spacing only on RedCoach case study section main container */
 section.border-b.border-slate-100.bg-system > div.mx-auto {
   padding-bottom: 90px;
+}
+
+/* Fine-tune vertical spacing on footer demo section container */
+footer.bg-archive > div.mx-auto {
+  padding-top: 87px;
+  padding-bottom: 87px;
+}
+
+/* Add top padding to demo form grid */
+footer.bg-archive form > div.grid {
+  padding-top: 36px;
+}
+
+/* Ensure no extra bottom margin on demo form */
+footer.bg-archive form.mt-8 {
+  margin-bottom: 0;
 }

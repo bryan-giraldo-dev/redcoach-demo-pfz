@@ -12,26 +12,172 @@ const createElement = (tag, className = '', children = []) => {
   return el;
 };
 
+// Scroll reveal helper
+function registerFadeUp(el, observer) {
+  if (!el) return;
+  el.classList.add('fade-up-initial');
+
+  if (!('IntersectionObserver' in window)) {
+    el.classList.add('fade-up-visible');
+    return;
+  }
+
+  if (observer) {
+    observer.observe(el);
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+  let fadeObserver = null;
+
+  if ('IntersectionObserver' in window) {
+    fadeObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-up-visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+  }
+
   const { navigation, hero, frankenstein, steps, redCoachCase, aiAgents, comparison, footer } =
     LANDING_DATA;
 
-  // Navigation
+  // Navigation / hero copy
   setText('nav-brand', navigation.brand);
   setText('nav-byline', navigation.byline);
-  setText('nav-cta', navigation.cta);
-
-  // Hero
   setText('hero-title', hero.title);
   setText('hero-description', hero.description);
   setText('hero-primary-cta', hero.primaryCTA);
   setText('hero-secondary-cta', hero.secondaryCTA);
+
+  const navPrimaryCta = document.getElementById('nav-primary-cta');
+  const navSecondaryCta = document.getElementById('nav-secondary-cta');
+  const heroCtaGroup = document.getElementById('hero-cta-group');
+  const heroPrimaryCta = document.getElementById('hero-primary-cta');
+  const heroSecondaryCta = document.getElementById('hero-secondary-cta');
+  const redcoachTitle = document.getElementById('redcoach-title');
+  const legalModal = document.getElementById('legal-modal');
+  const legalModalContent = document.getElementById('legal-modal-content');
+  const privacyModalContent = document.getElementById('privacy-modal-content');
+  const footerLegalLink = document.getElementById('footer-legal-link');
+  const footerPrivacyLink = document.getElementById('footer-privacy-link');
+
+  if (navPrimaryCta) {
+    // Estado inicial: botón único "Talk to the team"
+    navPrimaryCta.textContent = navigation.cta;
+  }
+
+  if (navSecondaryCta) {
+    // Texto por defecto para el secundario (se mostrará solo al hacer scroll)
+    navSecondaryCta.textContent = navigation.cta;
+  }
+
+  // Hero secondary CTA: scroll to RedCoach case study
+  if (heroSecondaryCta && redcoachTitle) {
+    heroSecondaryCta.addEventListener('click', () => {
+      redcoachTitle.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+
+  // "Book a demo" CTAs (hero primary + nav primary) scroll to footer form
+  const demoFooter = document.getElementById('demo-footer');
+  if (demoFooter) {
+    const scrollToDemoForm = () => {
+      demoFooter.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    };
+
+    if (heroPrimaryCta) {
+      heroPrimaryCta.addEventListener('click', scrollToDemoForm);
+    }
+
+    if (navPrimaryCta) {
+      navPrimaryCta.addEventListener('click', scrollToDemoForm);
+    }
+  }
+
+  // Legal notice / Privacy Policy modal
+  if (legalModal && legalModalContent && privacyModalContent) {
+    const openLegalModal = type => {
+      if (type === 'legal') {
+        legalModalContent.classList.remove('hidden');
+        privacyModalContent.classList.add('hidden');
+      } else if (type === 'privacy') {
+        privacyModalContent.classList.remove('hidden');
+        legalModalContent.classList.add('hidden');
+      }
+      legalModal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+    };
+
+    const closeLegalModal = () => {
+      legalModal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    };
+
+    if (footerLegalLink) {
+      footerLegalLink.addEventListener('click', () => openLegalModal('legal'));
+    }
+
+    if (footerPrivacyLink) {
+      footerPrivacyLink.addEventListener('click', () => openLegalModal('privacy'));
+    }
+
+    legalModal.addEventListener('click', event => {
+      if (event.target === legalModal) {
+        closeLegalModal();
+      }
+    });
+
+    document
+      .querySelectorAll('[data-close-legal-modal]')
+      .forEach(btn => btn.addEventListener('click', closeLegalModal));
+
+    document.addEventListener('keydown', event => {
+      if (event.key === 'Escape' && !legalModal.classList.contains('hidden')) {
+        closeLegalModal();
+      }
+    });
+  }
+
+  // Cuando se superan los CTAs del hero, el nav pasa a:
+  // Primary: "Book a demo" (hero.primaryCTA)
+  // Secondary: "Talk to the team" (navigation.cta)
+  if (navPrimaryCta && navSecondaryCta && heroCtaGroup) {
+    const updateNavCtasOnScroll = () => {
+      const rect = heroCtaGroup.getBoundingClientRect();
+      const pastHeroCtas = rect.bottom <= 0;
+
+      if (pastHeroCtas) {
+        navPrimaryCta.textContent = hero.primaryCTA;
+        navSecondaryCta.textContent = navigation.cta;
+        navSecondaryCta.classList.remove('hidden', 'nav-cta--hidden');
+        navSecondaryCta.classList.add('nav-cta', 'nav-cta--visible');
+      } else {
+        navPrimaryCta.textContent = navigation.cta;
+        navSecondaryCta.classList.remove('nav-cta--visible');
+        navSecondaryCta.classList.add('nav-cta--hidden', 'hidden');
+      }
+    };
+
+    // Ejecutar una vez al cargar y luego en scroll
+    updateNavCtasOnScroll();
+    window.addEventListener('scroll', updateNavCtasOnScroll, { passive: true });
+  }
 
   const heroImg = document.getElementById('hero-image');
   if (heroImg && hero.image) {
     heroImg.src = hero.image.src;
     heroImg.alt = hero.image.alt;
   }
+
+  // Register static fade-up elements
+  document
+    .querySelectorAll('[data-animate="fade-up"]')
+    .forEach(el => registerFadeUp(el, fadeObserver));
 
   // Frankenstein / problem section
   setText('frankenstein-eyebrow', frankenstein.eyebrow);
@@ -46,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const bulletsContainer = document.getElementById('frankenstein-bullets');
   if (bulletsContainer) {
-    frankenstein.bullets.forEach(text => {
+    frankenstein.bullets.forEach((text, index) => {
       const li = document.createElement('li');
       li.className =
         'rounded-2xl bg-white px-4 py-3 text-sm text-slate-700 shadow-sm shadow-slate-100 md:px-5';
@@ -58,6 +204,9 @@ document.addEventListener('DOMContentLoaded', () => {
           <span>${text}</span>
         </div>
       `;
+      // Domino / staggered reveal for Frankenstein bullets
+      li.style.transitionDelay = `${index * 220}ms`;
+      registerFadeUp(li, fadeObserver);
       bulletsContainer.appendChild(li);
     });
   }
@@ -101,6 +250,9 @@ document.addEventListener('DOMContentLoaded', () => {
         <h3 class="font-accent text-base font-bold md:text-lg">${item.title}</h3>
         <p class="text-xs text-slate-600 md:text-sm">${item.description}</p>
       `;
+      // Domino / staggered reveal on scroll (slower so it's noticeable)
+      card.style.transitionDelay = `${index * 220}ms`;
+      registerFadeUp(card, fadeObserver);
       stepsList.appendChild(card);
     });
   }
@@ -120,6 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <p class="text-2xl font-semibold text-emerald-900 md:text-[1.8rem]">${metric.value}</p>
         <p class="mt-1 text-xs font-medium uppercase tracking-[0.14em] text-emerald-800/80 md:text-[11px]">${metric.label}</p>
       `;
+      registerFadeUp(metricCard, fadeObserver);
       redMetrics.appendChild(metricCard);
     });
   }
@@ -156,68 +309,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Keep existing HTML (icon + text) instead of replacing it
   }
 
-  // Comparison table
-  setText('comparison-eyebrow', comparison.eyebrow);
-  setText('comparison-title', comparison.title);
-  setText('comparison-subtitle', comparison.subtitle);
-
-  const headerRow = document.getElementById('comparison-header-row');
-  if (headerRow) {
-    // First header cell for feature labels
-    const thLabel = document.createElement('th');
-    thLabel.className =
-      'px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400';
-    thLabel.scope = 'col';
-    thLabel.textContent = 'Feature';
-    headerRow.appendChild(thLabel);
-
-    const totalCols = comparison.columns.length;
-    comparison.columns.forEach((col, index) => {
-      const th = document.createElement('th');
-      th.scope = 'col';
-      const isHighlight = index === totalCols - 1;
-      th.className = [
-        'px-4 py-3 text-xs font-semibold md:text-sm',
-        isHighlight
-          ? 'text-slate-900 bg-sky-50'
-          : 'text-slate-700 bg-white'
-      ].join(' ');
-      th.textContent = col;
-      headerRow.appendChild(th);
+  // AI agents - domino reveal for cards
+  const aiAgentsGrid = document.getElementById('ai-agents-grid');
+  if (aiAgentsGrid) {
+    const cards = Array.from(aiAgentsGrid.querySelectorAll('article[data-animate="fade-up"]'));
+    cards.forEach((card, index) => {
+      card.style.transitionDelay = `${index * 220}ms`;
     });
   }
-
-  const body = document.getElementById('comparison-body');
-  if (body) {
-    comparison.rows.forEach(row => {
-      const tr = document.createElement('tr');
-      tr.className = 'bg-white/60 hover:bg-white';
-
-      const labelCell = document.createElement('td');
-      labelCell.className =
-        'whitespace-nowrap px-4 py-3 text-xs font-medium text-slate-700 md:text-sm';
-      labelCell.textContent = row.label;
-      tr.appendChild(labelCell);
-
-      const totalValues = row.values.length;
-      row.values.forEach((value, index) => {
-        const td = document.createElement('td');
-        const isHighlight = index === totalValues - 1;
-        td.className = [
-          'whitespace-nowrap px-4 py-3 text-xs md:text-sm',
-          isHighlight
-            ? 'bg-sky-50 font-semibold text-slate-900'
-            : 'text-slate-600'
-        ].join(' ');
-        td.textContent = value;
-        tr.appendChild(td);
-      });
-
-      body.appendChild(tr);
-    });
-  }
-
-  // Footer section intentionally removed per design update.
 
   // Enhance icons from Lucide if available
   if (window.lucide && window.lucide.createIcons) {
