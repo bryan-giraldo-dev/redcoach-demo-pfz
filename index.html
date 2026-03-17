@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performanze | Selfware USA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-white text-slate-900 antialiased">
+    <!-- Navigation -->
+    <header class="border-b border-slate-200">
+        <nav class="mx-auto flex max-w-6xl items-center justify-between px-4 py-4 md:px-6">
+            <div class="flex items-baseline gap-2">
+                <span id="nav-brand" class="font-accent text-xl md:text-2xl"></span>
+                <span id="nav-byline" class="text-xs text-slate-500 md:text-sm"></span>
+            </div>
+            <button id="nav-cta" class="rounded-full bg-archive px-5 py-2 text-xs font-semibold text-white md:px-6 md:text-sm"></button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero -->
+        <section class="border-b border-slate-200 bg-white">
+            <div class="mx-auto flex max-w-5xl flex-col items-center px-4 pb-16 pt-10 text-center md:pb-20 md:pt-16">
+                <div class="mb-10 w-full max-w-3xl">
+                    <img id="hero-image" class="mx-auto w-full max-w-2xl object-contain" />
+                </div>
+                <h1 id="hero-title" class="font-accent text-4xl leading-tight font-semibold md:text-5xl lg:text-6xl"></h1>
+                <p id="hero-description" class="mt-5 max-w-2xl text-base text-slate-600 md:text-lg"></p>
+                <div class="mt-8 flex flex-wrap justify-center gap-4">
+                    <button id="hero-primary-cta" class="rounded-full bg-archive px-8 py-3 text-sm font-semibold text-white md:px-10"></button>
+                    <button id="hero-secondary-cta" class="rounded-full border border-slate-300 px-8 py-3 text-sm font-semibold text-slate-900 md:px-10"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Frankenstein section -->
+        <section class="bg-system">
+            <div class="mx-auto max-w-6xl px-4 py-16 md:px-6 lg:py-20">
+                <div class="text-center">
+                    <p id="frankenstein-eyebrow" class="text-xs font-semibold tracking-[0.18em] text-amber-600"></p>
+                    <h2 id="frankenstein-title" class="mt-3 font-accent text-2xl leading-snug text-slate-900 font-semibold md:text-3xl lg:text-4xl"></h2>
+                </div>
+                <div class="mt-10 grid gap-10 md:grid-cols-[1.1fr,0.9fr] md:items-center lg:gap-16">
+                    <div class="flex items-center justify-center">
+                        <div class="relative w-full max-w-xl">
+                            <img id="frankenstein-image" class="w-full rounded-3xl object-contain" />
+                        </div>
+                    </div>
+                    <div class="space-y-4">
+                        <div class="relative overflow-hidden rounded-3xl bg-white px-8 py-6 text-left shadow-sm shadow-slate-200">
+                            <div class="absolute inset-y-0 left-0 w-1.5 bg-alert"></div>
+                            <div class="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-alert">
+                                <span class="flex h-6 w-6 items-center justify-center rounded-full bg-alert/10 text-alert text-xs">
+                                    !
+                                </span>
+                                <span>Hidden annual cost</span>
+                            </div>
+                            <p id="frankenstein-stat-value" class="font-accent text-3xl font-semibold text-slate-900 md:text-[2.4rem]"></p>
+                            <p id="frankenstein-stat-label" class="mt-2 text-sm text-slate-400 md:text-base"></p>
+                        </div>
+                        <ul id="frankenstein-bullets" class="mt-4 space-y-3 text-sm text-slate-700 md:text-base"></ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Three steps -->
+        <section class="border-b border-slate-100 bg-white">
+            <div class="mx-auto max-w-6xl px-4 py-14 md:px-6 lg:py-20">
+                <div class="text-center">
+                    <p id="steps-eyebrow" class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-blue"></p>
+                    <h2 id="steps-title" class="mt-3 font-accent text-2xl font-semibold md:text-3xl lg:text-4xl"></h2>
+                    <p id="steps-subtitle" class="mt-4 text-sm text-slate-600 md:text-base"></p>
+                </div>
+                <div id="steps-list" class="mt-10 grid gap-6 md:grid-cols-3"></div>
+            </div>
+        </section>
+
+        <!-- RedCoach Case -->
+        <section class="border-b border-slate-100 bg-system">
+            <div class="mx-auto max-w-6xl px-4 py-14 md:px-6 lg:py-20">
+                <div class="-mt-[54px] flex items-center justify-center">
+                    <img
+                        src="assets/LogoRedCoach.png"
+                        alt="RedCoach logo"
+                        class="h-[125px] w-[125px]"
+                    />
+                </div>
+                <h2 id="redcoach-title" class="text-center font-accent text-3xl font-semibold md:text-[2.2rem] lg:text-4xl pb-[21px]"></h2>
+                <div class="mt-8 rounded-3xl bg-white p-6 shadow-xl shadow-slate-200/80 md:p-8 lg:p-10">
+                    <div class="grid gap-10 md:grid-cols-[1.2fr,1.4fr] md:items-start">
+                        <!-- Columna izquierda: challenge + métricas principales -->
+                        <div class="space-y-4">
+                            <div class="text-sm text-slate-700 md:text-base">
+                                <h3 id="redcoach-challenge-title" class="font-accent text-lg font-semibold md:text-xl"></h3>
+                                <p id="redcoach-challenge-body" class="mt-2"></p>
+                            </div>
+                            <div id="redcoach-metrics" class="space-y-4"></div>
+                        </div>
+                        <!-- Columna derecha: testimonial + barra de KPIs agregados + botón PDF -->
+                        <div class="flex flex-col justify-end gap-[18px]">
+                            <div class="rounded-2xl bg-slate-50 p-6 pb-8 text-sm text-slate-700 md:p-7 lg:p-8">
+                                <div class="mb-4 flex items-center gap-3">
+                                    <img
+                                        id="redcoach-avatar"
+                                        class="h-12 w-12 rounded-full object-cover"
+                                        src=""
+                                        alt=""
+                                    />
+                                    <div class="text-xs font-medium text-slate-600">
+                                        <p id="redcoach-author" class="text-slate-900"></p>
+                                        <p id="redcoach-role" class="text-slate-500"></p>
+                                    </div>
+                                </div>
+                                <blockquote id="redcoach-quote" class="text-sm leading-relaxed md:text-base"></blockquote>
+                            </div>
+                            <div class="space-y-4">
+                                <div
+                                    id="redcoach-bottom-metrics"
+                                    class="mt-2 flex w-full items-center justify-between rounded-2xl bg-slate-50 px-6 py-4 text-xs text-slate-900 md:px-8 md:py-5"
+                                ></div>
+                                <div class="mt-[71px] flex w-full items-end justify-end pt-[53px] pr-0 pb-1 md:pr-0">
+                                    <a
+                                        id="redcoach-pdf-link"
+                                        class="inline-flex items-center gap-2 rounded-full bg-archive px-5 py-2 text-xs font-semibold text-white shadow-sm shadow-slate-700/30 md:text-sm"
+                                        href="#"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                    >
+                                        <i data-lucide="download" class="h-4 w-4"></i>
+                                        <span>Download the full PDF</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Agents -->
+        <section class="border-b border-slate-100 bg-system">
+            <div class="mx-auto max-w-6xl px-4 py-14 md:px-6 lg:py-20 text-center">
+                <p class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-blue">
+                    Specialized intelligence
+                </p>
+                <h2 class="mt-3 font-accent text-3xl font-semibold md:text-[2.2rem]">
+                    AI agents that know your business
+                </h2>
+                <p class="mt-3 text-sm text-slate-600 md:text-base">
+                    Pre-built agents trained on your industry. Deploy in days, not months.
+                </p>
+
+                <div class="mt-10 grid gap-6 md:grid-cols-4">
+                    <article class="relative flex h-full flex-col justify-between rounded-3xl bg-white p-6 text-left shadow-sm shadow-slate-200">
+                        <div class="absolute right-4 top-4 rounded-full bg-emerald-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
+                            5x ROI
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-300">
+                                <i data-lucide="bus-front" class="h-5 w-5"></i>
+                            </div>
+                            <h3 class="font-accent text-base font-semibold">Fleet Agent</h3>
+                            <p class="text-xs text-slate-600 md:text-sm">
+                                Monitors vehicle data, syncs maintenance schedules, and automates dispatch across multiple systems.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="relative flex h-full flex-col justify-between rounded-3xl bg-white p-6 text-left shadow-sm shadow-slate-200">
+                        <div class="absolute right-4 top-4 rounded-full bg-emerald-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
+                            5x ROI
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-300">
+                                <i data-lucide="line-chart" class="h-5 w-5"></i>
+                            </div>
+                            <h3 class="font-accent text-base font-semibold">Sales Agent</h3>
+                            <p class="text-xs text-slate-600 md:text-sm">
+                                Tracks leads across CRMs, updates pipelines in real-time, and triggers follow-up workflows automatically.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="relative flex h-full flex-col justify-between rounded-3xl bg-white p-6 text-left shadow-sm shadow-slate-200">
+                        <div class="absolute right-4 top-4 rounded-full bg-emerald-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
+                            5x ROI
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-300">
+                                <i data-lucide="badge-dollar-sign" class="h-5 w-5"></i>
+                            </div>
+                            <h3 class="font-accent text-base font-semibold">Pricing Agent</h3>
+                            <p class="text-xs text-slate-600 md:text-sm">
+                                Analyzes cost data from accounting, inventory, and market sources to optimize pricing strategies.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="relative flex h-full flex-col justify-between rounded-3xl bg-white p-6 text-left shadow-sm shadow-slate-200">
+                        <div class="absolute right-4 top-4 rounded-full bg-emerald-500 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-white">
+                            5x ROI
+                        </div>
+                        <div class="space-y-3">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-slate-50 text-slate-300">
+                                <i data-lucide="users" class="h-5 w-5"></i>
+                            </div>
+                            <h3 class="font-accent text-base font-semibold">Customer Agent</h3>
+                            <p class="text-xs text-slate-600 md:text-sm">
+                                Unifies support tickets, order history, and communication logs for instant customer context.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="mt-12 flex flex-col items-center gap-3">
+                    <p class="text-sm text-slate-600">
+                        Need a custom agent for your specific workflow?
+                    </p>
+                    <button class="rounded-full bg-archive px-6 py-2 text-xs font-semibold text-white md:px-8 md:text-sm">
+                        Discuss your use case
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Table -->
+        <section class="border-y border-slate-200 bg-white">
+            <div class="mx-auto max-w-6xl px-4 py-14 md:px-6 lg:py-20">
+                <div class="max-w-2xl space-y-3">
+                    <p id="comparison-eyebrow" class="text-xs font-semibold uppercase tracking-[0.18em] text-brand-blue"></p>
+                    <h2 id="comparison-title" class="font-accent text-2xl md:text-3xl"></h2>
+                    <p id="comparison-subtitle" class="text-sm text-slate-600 md:text-base"></p>
+                </div>
+                <div class="mt-8 overflow-x-auto rounded-2xl border border-slate-200 bg-slate-50">
+                    <table class="min-w-full text-left text-xs md:text-sm">
+                        <thead class="bg-white">
+                            <tr id="comparison-header-row"></tr>
+                        </thead>
+                        <tbody id="comparison-body" class="divide-y divide-slate-200"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer / Demo form -->
+        <footer class="bg-archive text-slate-100">
+            <div class="mx-auto max-w-6xl px-4 py-14 md:px-6 lg:py-20">
+                <div class="grid gap-10 md:grid-cols-[1.1fr,0.9fr] md:items-start">
+                    <div class="space-y-4">
+                        <h2 id="footer-title" class="font-accent text-2xl md:text-3xl"></h2>
+                        <p id="footer-subtitle" class="text-sm text-slate-300 md:text-base"></p>
+                        <p id="footer-note" class="text-xs text-slate-400 md:text-sm"></p>
+                    </div>
+                    <form class="space-y-4 rounded-2xl border border-slate-800 bg-slate-900/60 p-5 text-xs md:text-sm">
+                        <div id="footer-fields" class="grid gap-4 md:grid-cols-2"></div>
+                        <button id="footer-cta" type="button" class="btn-primary mt-2 w-full rounded-full px-6 py-3 text-sm font-semibold"></button>
+                        <p id="footer-legal" class="pt-1 text-[11px] text-slate-400"></p>
+                    </form>
+                </div>
+                <div class="mt-10 flex flex-col items-start justify-between gap-4 border-t border-slate-800 pt-6 text-[11px] text-slate-500 md:flex-row md:items-center">
+                    <div id="footer-links" class="flex flex-wrap gap-4"></div>
+                    <p id="footer-copyright"></p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script type="module" src="main.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Domine:wght@400;700&family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  /* Brand colors */
+  --core-blue: #0052FE;
+  --archive-black: #0A1413;
+  --absolute-white: #FFFFFF;
+  --alert-orange: #FF0000;
+  --system-gray: #F7FAF9;
+
+  /* Typography */
+  --font-main: 'Inter', sans-serif;
+  --font-accent: 'Domine', serif;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--absolute-white);
+  color: var(--archive-black);
+  line-height: 1.5;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-accent);
+}
+
+.font-accent {
+  font-family: var(--font-accent);
+}
+
+.bg-archive {
+  background-color: var(--archive-black);
+}
+
+.bg-system {
+  background-color: var(--system-gray);
+}
+
+.bg-alert {
+  background-color: var(--alert-orange);
+}
+
+.bg-alert\/10 {
+  background-color: rgba(255, 0, 0, 0.18);
+}
+
+.text-brand-blue {
+  color: var(--core-blue);
+}
+
+.bg-brand-blue {
+  background-color: var(--core-blue);
+}
+
+.text-alert {
+  color: var(--alert-orange);
+}
+
+.bg-amber-50 {
+  background-color: var(--absolute-white);
+}
+
+.btn-primary { 
+  background-color: var(--core-blue);
+  color: white;
+  transition: all 0.3s ease;
+}
+.btn-primary:hover { 
+  opacity: 0.9; 
+  transform: translateY(-1px); 
+}
+
+.badge-alert {
+  background-color: rgba(10, 20, 19, 0.08);
+  color: var(--archive-black);
+}
+
+/* Fine-tune Tailwind-generated layout to keep editorial whitespace */
+main {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Adjust spacing above the three-steps list */
+#steps-list {
+  margin-top: 59px;
+}
+
+/* Fine-tune vertical spacing only on Frankenstein section main container */
+section.bg-system > div.mx-auto {
+  padding-top: 90px;
+}
+
+/* Fine-tune bottom spacing only on RedCoach case study section main container */
+section.border-b.border-slate-100.bg-system > div.mx-auto {
+  padding-bottom: 90px;
+}
