@@ -20,7 +20,7 @@ const LANDING_DATA = {
     title: "Every integration is custom. Every update breaks something.",
     badge: "12+ tools. 0 shared context.",
     statValue: "$150-300K/year",
-    statLabel: "in hidden labor costs",
+    statLabel: "in manual overhead",
     description:
       "The hidden tax of brittle integrations shows up everywhere in your operation — and your best people are the ones paying it.",
     bullets: [
@@ -54,7 +54,7 @@ const LANDING_DATA = {
       },
       {
         step: "03",
-        title: "Activate",
+        title: "Execute",
         description:
           "Deploy specialized AI agents that execute workflows across your entire stack. Zero manual work."
       }

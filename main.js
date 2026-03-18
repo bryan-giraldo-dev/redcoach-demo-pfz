@@ -201,7 +201,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <span class="flex h-6 w-6 items-center justify-center rounded-full bg-alert/10 text-alert text-xs">
             ✕
           </span>
-          <span>${text}</span>
+          <span class="text-slate-700">${text}</span>
         </div>
       `;
       // Domino / staggered reveal for Frankenstein bullets
