@@ -62,7 +62,7 @@ const LANDING_DATA = {
   },
   redCoachCase: {
     label: "Case study",
-    title: "RedCoach case study: From chaos to clarity",
+    title: "From Fragmented Operations to Unified Intelligence.",
     subtitle:
       "RedCoach used Selfware to unify fragmented operations into a single, AI-powered layer — without replatforming or rewriting their stack.",
     metrics: [
